@@ -30,7 +30,6 @@ const useAxiosAuth = () => {
           setRetryCount((prev) => prev + 1);
           prevRequest.sent = true;
           const tokens = await refreshToken();
-          console.log("from useAxiosAuth, tokens:", tokens);
           if (tokens) {
             prevRequest.headers[
               "Authorization"

@@ -22,8 +22,6 @@ export default function LoginForm() {
       });
 
       if (res.error) {
-        console.log("res", res);
-        console.log("res.error", res.error);
         setError("Invalid Credentials");
         setTimeout(() => {
           setError("");

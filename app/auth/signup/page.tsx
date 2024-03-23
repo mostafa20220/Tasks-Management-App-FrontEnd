@@ -5,7 +5,6 @@ import { authOptions } from "app/api/auth/[...nextauth]/route";
 
 export default async function SignupPage() {
   const session = await getServerSession(authOptions);
-  console.log("form dashboard, session:", session);
   if (session) redirect("/dashboard");
 
   return <RegisterForm />;
