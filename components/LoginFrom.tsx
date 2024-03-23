@@ -25,12 +25,18 @@ export default function LoginForm() {
         console.log("res", res);
         console.log("res.error", res.error);
         setError("Invalid Credentials");
+        setTimeout(() => {
+          setError("");
+        }, 5_000);
         return;
       }
 
       router.push("/dashboard");
     } catch (error) {
       setError(error?.response?.data?.message);
+      setTimeout(() => {
+        setError("");
+      }, 5_000);
     }
   };
 
@@ -69,7 +75,7 @@ export default function LoginForm() {
           <SubmitButton
             className={`btn bg-green-600 text-white font-bold cursor-pointer px-6 py-2  
                disabled:btn-disabled            `}
-            disabled={!email || !password ? true : false}
+            disabled={error || !email || !password ? true : false}
           >
             Login
           </SubmitButton>

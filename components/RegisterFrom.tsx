@@ -59,7 +59,6 @@ export default function RegisterForm() {
   };
 
   async function handleSubmit() {
-
     try {
       const newUser = {
         linkedinUrl,
@@ -77,7 +76,10 @@ export default function RegisterForm() {
       router.push("/dashboard");
     } catch (error) {
       console.error("Signup error:", error);
-      console.log("error?.response?.data?.message", error?.response?.data?.message);
+      console.log(
+        "error?.response?.data?.message",
+        error?.response?.data?.message
+      );
       setError(error?.response?.data?.message || "Something went wrong");
 
       setTimeout(() => {
@@ -105,36 +107,43 @@ export default function RegisterForm() {
 
           <input
             className={`input  input-success `}
-            onChange={(e) => setLinkedinUrl(e.target.value.trim())}
+            onChange={(e) => {
+              setLinkedinUrl(e.target.value.trim());
+              validateLinkedinUrl(e);
+            }}
             type="text"
             placeholder="LinkedIn Profile Link"
             required
-            onBlur={validateLinkedinUrl}
+            // onBlur={validateLinkedinUrl}
             name="linkedinUrl"
           />
           <input
             className="input input-success "
-            onChange={(e) => setEmail(e.target.value.trim())}
+            onChange={(e) => {
+              setEmail(e.target.value.trim());
+              validateEmail(e);
+            }}
             type="text"
             placeholder="Email"
             required
-            onBlur={validateEmail}
+            // onBlur={validateEmail}
             name="email"
           />
           <input
             className="input input-success"
-            onChange={(e) => setPassword(e.target.value.trim())}
+            onChange={(e) => {
+              setPassword(e.target.value.trim());
+              validatePassword(e);
+            }}
             type="password"
             placeholder="Password"
             required
-            onBlur={validatePassword}
+            // onBlur={validatePassword}
             name="password"
           />
           <SubmitButton
             disabled={
-              error || !email || !password || !linkedinUrl
-                ? true
-                : false
+              error || !email || !password || !linkedinUrl ? true : false
             }
             className={`btn bg-green-600 text-white font-bold cursor-pointer px-6 py-2  disabled:btn-disabled `}
           >
